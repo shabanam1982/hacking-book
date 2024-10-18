@@ -1,14 +1,18 @@
-name: CI
+name: Run Shell Script
 
 on: [push]
 
 jobs:
-  build:
+  run-shell-script:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Run a one-liner script
-      run: echo "Hello, GitHub Actions!"
+    - name: Run a shell script
+      run: |
+        echo "Running shell script"
+        # Add your shell commands here
+        ls -la
+        pwd
