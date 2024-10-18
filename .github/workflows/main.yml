@@ -1,18 +1,22 @@
-name: Run Shell Script
+name: CI
 
 on: [push]
 
 jobs:
-  run-shell-script:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run a shell script
-      run: |
-        echo "Running shell script"
-        # Add your shell commands here
-        ls -la
-        pwd
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
